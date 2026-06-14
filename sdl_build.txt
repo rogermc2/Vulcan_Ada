@@ -1,0 +1,12 @@
+
+
+alr init --bin sdl_test  
+cd sdl_test
+alr with sdlada 
+
+Add to gpr file:
+   package Linker is
+      for Switches ("Ada") use ("-lSDL2");
+   end Linker;
+
+alr build

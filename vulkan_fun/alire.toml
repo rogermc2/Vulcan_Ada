@@ -1,0 +1,12 @@
+name = "vulkan_fun"
+description = ""
+version = "0.1.0-dev"
+
+authors = ["Roger Mc Murtrie"]
+maintainers = ["Roger Mc Murtrie <rogermc@iinet.net.au>"]
+maintainers-logins = ["Rogermc2"]
+licenses = "MIT OR Apache-2.0 WITH LLVM-exception"
+website = ""
+tags = []
+
+executables = ["vulkan_fun"]

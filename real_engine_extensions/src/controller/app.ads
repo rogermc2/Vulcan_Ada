@@ -1,0 +1,20 @@
+
+with SDL_Backend;
+with SDL;
+
+package App is
+
+   --  Set up the app
+   --  Width: requested window width
+   --  Height: requested window height
+   procedure Initialize (Width, Height : SDL.Positive_Dimension);
+   procedure Run;
+
+   --  Clean up resources
+   procedure Finalize;
+
+private
+   Window : SDL_Backend.Windows.Window;
+
+end App;
+-------------------------------------------------------------------------------

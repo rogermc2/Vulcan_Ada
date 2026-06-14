@@ -1,0 +1,15 @@
+As using Homebrew SDL2 fixed it,  this suggests that the original SDL2 library in /Applications/vulkan/macOS/lib was either:
+only available as a static libSDL2.a or
+built with a different Apple SDK/toolchain that expected symbols such as ___isPlatformVersionAtLeast to be provided by a newer runtime.
+
+The Homebrew build is generally well integrated with the current macOS SDK and Apple Silicon toolchain so it's often the path of least resistance on modern Macs.
+
+For future reference when errors occur like:
+Undefined symbols for architecture arm64:
+  "___isPlatformVersionAtLeast"
+or
+_CHHapticDynamicParameterIDHapticIntensityControl
+the first thing to check is which library is actually being linked. 
+The clue was:
+in libSDL2.a(SDL_mfijoystick.m.o)
+which told us that the linker was pulling code from a static archive rather than a dylib.

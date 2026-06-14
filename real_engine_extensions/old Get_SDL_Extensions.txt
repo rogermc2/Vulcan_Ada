@@ -1,0 +1,43 @@
+function Get_SDL_Extensions (Window : Windows.Window)
+   --     return SDL_Vulkan.Extension_Name_Arrays_Package.Extension_Name_Array is
+   --     use SDL_Vulkan.Extension_Name_Arrays_Package;
+   --     Mvk_Path : Interfaces.C.Strings.chars_ptr := 
+   --     Interfaces.C.Strings.New_String("/opt/homebrew/lib/libMoltenVK.dylib");
+   --     Count       : aliased Interfaces.C.unsigned := 0;
+   --     Empty_Array : Extension_Name_Array (1 .. 0);
+   --     Success     : SDL_Bool := SDL_False;
+   --   begin      
+   --     --  if SDL_Vulkan.Load_Library (Interfaces.C.Strings.Null_Ptr) = 
+   --     if SDL_Vulkan.Load_Library (Mvk_Path) = SDL_False then
+   --        Put_Line ("Explicit dynamic load failed.");
+   --        --  Put_Line ("SDL_BackendItem.Get_SDL_Extensions " &
+   --        --     "SDL_Vulkan.Load_library failed");
+   --        return Empty_Array;
+   --     else
+   --        --  Get the number of required extensions
+   --        Success := SDL_Vulkan.Get_Instance_Extensions
+   --           (Window => Window'Address, Count  => Count'Access,
+   --              Names  => System.Null_Address);
+
+   --        if Success = SDL_True and then Count /= 0 then
+   --           declare
+   --              --  Map the unsigned C index range cleanly to an
+   --              --  Ada Positive subtype range
+   --              Last_Index : constant Positive := Positive (Count);
+   --              theExtensions : Extension_Name_Array (1 .. Last_Index);
+   --           begin
+   --              Success := SDL_Vulkan.Get_Instance_Extensions
+   --                 (Window => Window'Address, Count  => Count'Access,
+   --                    Names  => theExtensions (1)'Address);
+   --              if Success = SDL_True then 
+   --                 return theExtensions;
+   --              else
+   --                 return Empty_Array;
+   --              end if;
+   --           end;
+   --        else
+   --           return Empty_Array;
+   --        end if;       
+      --  end if;
+
+   --   end Get_SDL_Extensions;

@@ -1,0 +1,51 @@
+
+with "config/real_engine_extensions_config.gpr";
+
+project Real_Engine_Extensions is
+
+   for Source_Dirs use ("src/", "config/", "vulkada/", "src/backend/",
+     "src/controller/", "src/logging/", "src/renderer/");
+   for Object_Dir use "obj/" & Real_Engine_Extensions_Config.Build_Profile;
+   for Create_Missing_Dirs use "True";
+   for Exec_Dir use ".";
+   for Main use ("real_engine.adb");
+
+   package Compiler is
+      for Default_Switches ("Ada") use Real_Engine_Extensions_Config.Ada_Compiler_Switches
+      & ("-gnat2022", "-mmacosx-version-min=26.0");
+   end Compiler;
+
+   package Binder is
+      --  Symbolic traceback and
+      --  tells the GNAT Binder to provision a 16 Megabyte primary  task stack
+      for Switches ("Ada") use ("-Es", "-d16m");
+   end Binder;
+
+   package Linker is
+   for Switches ("Ada") use
+     ("-L/Applications/vulkan/macOS/lib",
+      "-lvulkan",
+      "-Wl,-rpath,/opt/homebrew/lib",
+      "/opt/homebrew/lib/libSDL2.dylib",
+      "-Wl,-macosx_version_min,26.0",
+      "-Wl,-stack_size,0x1000000",
+      "-Wl,-syslibroot," & external ("SDKROOT"),
+      "-framework", "Cocoa", 
+      "-framework", "IOKit",
+      "-framework", "CoreAudio",
+      "-framework", "AudioToolbox",
+      "-framework", "CoreVideo",
+      "-framework", "CoreHaptics",
+      "-framework", "GameController",
+      "-framework", "ForceFeedback",
+      "-framework", "CoreVideo",
+      "-framework", "Metal",
+      "-framework", "QuartzCore",
+      "-framework", "Carbon");
+   end Linker;
+
+   package Install is
+      for Artifacts (".") use ("share");
+   end Install;
+
+end Real_Engine_Extensions;
