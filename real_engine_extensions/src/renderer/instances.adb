@@ -81,8 +81,10 @@ package body Instances is
       App_Info.Engine_Version := Vulkan.Create_Version (1, 0);
       App_Info.API_Version := Version;
 
+      Logger.Print ("Requested extensions:");
       for Name of SDL_Extensions loop
          Requested_Extensions.Append (To_String (Name));
+         Logger.Print (To_String (Name));
       end loop;
 
       Create_Info.Application_Info := App_Info'Unchecked_Access;
