@@ -1,6 +1,7 @@
 
---  with Interfaces.C.Strings;
+with Ada.Exceptions; use Ada.Exceptions;
 with Ada.Strings.Unbounded; use Ada.Strings.Unbounded;
+with Ada.Text_IO; use Ada.Text_IO;
 
 with Vulkan.Core;
 with Logger;
@@ -82,12 +83,6 @@ package body Instances is
 
       for Name of SDL_Extensions loop
          Requested_Extensions.Append (To_String (Name));
-      --  declare
-      --     use Interfaces.C.Strings;
-      --     S_Name : String := Value (Name);
-      --  begin
-      --     Requested_Extensions.Append (S_Name);
-      --  end;
       end loop;
 
       Create_Info.Application_Info := App_Info'Unchecked_Access;
@@ -105,6 +100,13 @@ package body Instances is
       else
          Logger.Print ("Failed to create an instance!");
       end if;
+
+exception
+      when Error : others =>
+         Put_Line ("Instances.Initialize Exception information:  " &
+                     Exception_Information (Error));
+         raise;
+
    end Initialize;
 
    procedure Destroy (Instance : in out Vulkan.Instance) is

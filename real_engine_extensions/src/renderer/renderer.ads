@@ -7,13 +7,13 @@ with Vulkan.Extensions.EXT;
 use Vulkan.Extensions.EXT;
 
 package Renderer is
-    package Windows renames SDL.Video.Windows;   
-    procedure Initialize (Window : Windows.Window);
+   package Windows renames SDL.Video.Windows;   
+   procedure Initialize (Window : Windows.Window);
 
-    --  Free up memory
-    procedure Finalize;
+   --  Free up memory
+   procedure Finalize;
 private
-    --  Vulkan instance
-    Instance : Vulkan.Instance;
+   --  Vulkan instance
+   Instance : Vulkan.Instance;
     
 end Renderer;
